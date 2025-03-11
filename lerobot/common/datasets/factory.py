@@ -26,6 +26,7 @@ from lerobot.common.datasets.lerobot_dataset import (
 from lerobot.common.datasets.transforms import ImageTransforms
 from lerobot.configs.policies import PreTrainedConfig
 from lerobot.configs.train import TrainPipelineConfig
+from lerobot.common.datasets.spirit_dataset import SpiritDataset
 
 IMAGENET_STATS = {
     "mean": [[[0.485]], [[0.456]], [[0.406]]],  # (c,1,1)
@@ -115,4 +116,7 @@ def make_dataset(cfg: TrainPipelineConfig) -> LeRobotDataset | MultiLeRobotDatas
             for stats_type, stats in IMAGENET_STATS.items():
                 dataset.meta.stats[key][stats_type] = torch.tensor(stats, dtype=torch.float32)
 
-    return dataset
+    # add spirit dataset
+    spirit_dataset = SpiritDataset(cfg, dataset)
+
+    return spirit_dataset

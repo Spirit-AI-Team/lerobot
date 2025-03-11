@@ -103,9 +103,10 @@ class PI0Config(PreTrainedConfig):
             )
 
         if self.use_delta_joint_actions_aloha:
-            raise NotImplementedError(
-                "`use_delta_joint_actions_aloha` is used by pi0 for aloha real models. It is not ported yet in LeRobot."
-            )
+            print ('add delta_joint_actions for aloha')
+            # raise NotImplementedError(
+            #     "`use_delta_joint_actions_aloha` is used by pi0 for aloha real models. It is not ported yet in LeRobot."
+            # )
 
     def validate_features(self) -> None:
         # TODO: implement value error
